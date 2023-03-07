@@ -4,9 +4,9 @@ var WPAPI = require('wpapi');
 var router = express.Router();
 
 var wp = new WPAPI({
-  endpoint: 'http://news.webd3027.ca/wp-json',
-  username: 'trumbull',
-  password: 'nscc123'
+  endpoint: 'http://DOMAIN-NAME/wp-json',
+  username: '',
+  password: ''
 });
 
 /* GET home page. */
