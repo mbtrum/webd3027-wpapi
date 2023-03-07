@@ -3,30 +3,31 @@ var WPAPI = require('wpapi');
 
 var router = express.Router();
 
-/* Get the Post from the WordPressAPI */
-
 var wp = new WPAPI({
   endpoint: 'http://news.webd3027.ca/wp-json',
   username: 'trumbull',
   password: 'nscc123'
 });
 
-// Get the Posts
-wp.posts().get(function (err, data) {
-  if (err) {
-    // handle err
-  }
-  // do something with the returned posts   
+/* GET home page. */
+router.get('/', async function (req, res, next) {  
+  /* Get the Posts from the WordPressAPI */  
+  const data = await wp.posts();
 
-  var count = data.length;
-  // forEach()
+  let posts = [];
 
-  /* GET home page. */
-  router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Home', numPosts: count });
+  data.forEach(function (item) {
+    posts.push(
+      {
+        title: item.title.rendered,
+        excerpt: item.excerpt.rendered
+      }
+    );
   });
-
+  
+  res.render('index', { posts: posts });  
 });
+
 
 module.exports = router;
 

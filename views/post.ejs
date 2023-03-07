@@ -12,6 +12,18 @@
         </h1>
         <p>Welcome to <%= title %>
         </p>
+
+        <form action="/post" method="post" enctype="multipart/form-data">
+          <label for="title">Title:</label>
+          <input id="title" name="title" type="text">
+          <br>
+          <br>
+          <label for="featured_image">Featured Image:</label>
+          <input id="featured_image" name="featured_image" type="file">
+          <br>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
       </div>
   </body>
 </html>
